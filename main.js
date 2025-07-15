@@ -1,22 +1,44 @@
 const express = require("express");
-app = express();
+const bodyParser = require("body-parser");
+const multer = require("multer");
 
-// Url Query request
-// http://localhost:5000?firstName=arat&lastName=islam
-app.get('/', (req, res)=> {
-    const firstName = req.query.firstName;
-    const lastName = req.query.lastName;
-    res.send(firstName+ ' '+ lastName);
-})
+const app = express();
+app.use(bodyParser.json());
 
-// Get Request Header
-app.get('/header-req', (req, res)=> {
-    const firstName = req.header('firstName');
-    const lastName = req.header('lastName');
-    res.end(firstName+ ' '+ lastName);
-})
+// multipart/form-data (form-data) 
+const upload = multer();
+app.use(upload.none());
+app.use(express.static("public"));
 
+//  URL Query Post request
+app.post("/", (req, res) => {
+  const firstName = req.query.firstName;
+  const lastName = req.query.lastName;
 
+  res.send("Query Data: " + firstName + " " + lastName);
+});
+
+//  Custom Header request
+app.post("/header", (req, res) => {
+  const userName = req.header("username");
+  const password = req.header("password");
+  res.send("UserName: " + userName + " | Password: " + password);
+});
+
+//  JSON Data POST request
+app.post("/json", (req, res) => {
+  const jsonData = req.body.name;
+  const jsonString = JSON.stringify(jsonData);
+  res.send("JSON name: " + jsonString);
+});
+
+//  Form-Data POST request
+app.post("/form-data", (req, res) => {
+  const formData = req.body;
+  res.send("Form Data Received: " + JSON.stringify(formData));
+});
+
+// ✅ Server run
 app.listen(5000, function () {
-    console.log("server run successfully");
-})
+  console.log("✅ Server running at http://localhost:5000");
+});
