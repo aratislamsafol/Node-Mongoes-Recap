@@ -1,4 +1,7 @@
-const express = require('express');
-var app = express();
+const app = require("./app");
+const dotenv = require('dotenv');
+dotenv.config({path: './config.env'});
 
-app
+app.listen(process.env.RUNNING_PORT, () => {
+    console.log("success Index Run");
+});

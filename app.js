@@ -1,0 +1,35 @@
+const express = require('express');
+const router = require('./src/routes/api');
+const app = new express();
+
+// security 
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+// const expressMongoSanitize = require('express-mongo-sanitize');
+const hpp = require('hpp');
+const cors = require('cors');
+
+//  security middleware
+app.use(cors())
+app.use(helmet())
+// app.use(expressMongoSanitize())
+app.use(hpp())
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+});
+
+app.use(limiter)
+
+
+
+
+// baseurl/api/v1/endPoint
+app.use("/api/v1", router)
+// undefined routes
+app.use((req, res) => {
+  res.status(404).json({ status: "Failed", data: "Not Found" });
+});
+
+module.exports = app;
