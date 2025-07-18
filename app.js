@@ -1,6 +1,7 @@
 const express = require('express');
 const router = require('./src/routes/api');
 const app = new express();
+const bodyParser = require('body-parser');
 
 // security 
 const rateLimit = require('express-rate-limit');
@@ -14,7 +15,9 @@ const mongoose = require('mongoose');
 app.use(cors())
 app.use(helmet())
 // app.use(expressMongoSanitize())
-app.use(hpp())
+app.use(hpp());
+
+app.use(bodyParser.json())
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
