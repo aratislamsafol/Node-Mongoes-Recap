@@ -11,5 +11,6 @@ router.post('/hello-post', HelloController.HelloPost)
 router.post('/insertOrder', OrderController.InsertOrder);
 router.get('/ReadOrder', OrderController.ReadOrder);
 router.get('/updateOrder/:id', OrderController.updateOrder);
+router.get('/removeOrder/:id', OrderController.removeOrder);
 
 module.exports = router;

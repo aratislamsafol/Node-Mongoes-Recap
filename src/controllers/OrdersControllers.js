@@ -39,4 +39,19 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
+// delete
+exports.removeOrder = async (req, res) => {
+  try {
+    let id = req.params.id;
+    let query = { _id: id };
+
+    const data = await OrderModel.deleteOne(query);
+
+    res.status(200).json({ status: "Success", data: data });
+  } catch (error) {
+    res.status(500).json({ status: "Fail", data: error.message });
+  }
+};
+
+
 
