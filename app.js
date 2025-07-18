@@ -8,6 +8,7 @@ const helmet = require('helmet');
 // const expressMongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 //  security middleware
 app.use(cors())
@@ -22,6 +23,22 @@ const limiter = rateLimit({
 
 app.use(limiter)
 
+// mongodb Database Connection
+
+// mongodb Database Connection
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+
+const URI = process.env.MONGOURI;
+let OPTION = { user: '', pass: '' };
+
+mongoose.connect(URI, OPTION)
+  .then(() => {
+    console.log("✅ MongoDB connection success");
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB connection error:", err);
+  });
 
 
 
