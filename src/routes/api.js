@@ -9,5 +9,6 @@ router.post('/hello-post', HelloController.HelloPost)
 
 // mongoose
 router.post('/insertOrder', OrderController.InsertOrder);
+router.get('/ReadOrder', OrderController.ReadOrder);
 
 module.exports = router;
