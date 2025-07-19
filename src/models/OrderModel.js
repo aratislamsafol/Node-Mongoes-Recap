@@ -1,9 +1,24 @@
 const mongoose = require('mongoose');
+
 const DataSchema = mongoose.Schema({
-    userId : String,
+    userId : {type: String, required: [true, ' userId is required!']},
     items: Array,
-    status: String,
-})
+    status: {type: String, default: 'Pending'},
+    mobile: {
+        type: String,
+        validate: {
+            validator: function (value) {
+                if(value.length !== 11) {
+                    return false;
+                }else {
+                    return true;
+                }
+            },
+            message: "11 Digit mobile number required"
+        }
+    }
+}, {versionKey: false})
 
 const OrderDataModel = mongoose.model('orders', DataSchema);
 module.exports = OrderDataModel;
+
