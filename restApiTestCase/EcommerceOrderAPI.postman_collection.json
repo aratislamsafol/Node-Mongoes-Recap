@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "1a249f75-a2ee-4be5-a9f1-80e8a6cfcc07",
+		"name": "EcommerceOrderAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19935371"
+	},
+	"item": [
+		{
+			"name": "Create New Order",
+			"item": [
+				{
+					"name": "insertOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"new 2\",\r\n     \"items\": [],\r\n     \"status\": \"pending\",\r\n     \"mobile\": \"01969545000\",\r\n     \"phone\": \"01969545000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/insertOrder",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"insertOrder"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReadOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"new 3\",\r\n     \"status\": \"pending\",\r\n     \"mobile\": \"01969545000\",\r\n     \"phone\": \"01766545000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/updateOrder/687b8cd3e0b7d2167fe4b9f9",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"updateOrder",
+						"687b8cd3e0b7d2167fe4b9f9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "removeOrder",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:5000/api/v1",
+			"type": "string"
+		}
+	]
+}
