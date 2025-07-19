@@ -16,6 +16,15 @@ const DataSchema = mongoose.Schema({
             },
             message: "11 Digit mobile number required"
         }
+    },
+    phone: {
+        type: String,
+        validate: {
+            validator: function (value) {
+                return /^(?:\+88|88)?01[3-9]\d{8}$/.test(value)
+            },
+            message: "Please enter a valid Bangladeshi mobile number (e.g., 017xxxxxxxx or +88017xxxxxxxx)."
+        }
     }
 }, {versionKey: false})
 
