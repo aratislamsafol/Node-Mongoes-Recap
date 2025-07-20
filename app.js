@@ -2,6 +2,7 @@ const express = require('express');
 const router = require('./src/routes/api');
 const app = new express();
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 // security 
 const rateLimit = require('express-rate-limit');
@@ -27,8 +28,6 @@ const limiter = rateLimit({
 app.use(limiter)
 
 // mongodb Database Connection
-
-// mongodb Database Connection
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 
@@ -43,7 +42,7 @@ mongoose.connect(URI, OPTION)
     console.error("❌ MongoDB connection error:", err);
   });
 
-
+// 
 
 // baseurl/api/v1/endPoint
 app.use("/api/v1", router)
