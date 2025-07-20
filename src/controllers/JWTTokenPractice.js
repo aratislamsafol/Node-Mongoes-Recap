@@ -5,7 +5,7 @@ const sercretKey = process.env.SECRETKEY;
 
 exports.CreateToken = ( req, res ) => {
     let payload = {
-        exp: Math.floor(Date.now()/1000) + (60*60),
+        exp: Math.floor(Date.now()/1000) + (30),
         data: {name: 'arat', city:'jashore', admin: true}
     }
 console.log("Loaded secret:", sercretKey);
